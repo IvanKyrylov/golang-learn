@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Printf("%s", "Test!")
+	fmt.Printf("%s", "Test verified!")
 }
