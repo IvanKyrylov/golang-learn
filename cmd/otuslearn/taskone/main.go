@@ -10,7 +10,7 @@ import (
 func main() {
 	time, err := ntp.Time("3.pool.ntp.org")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error: %s", err)
 	}
 
 	fmt.Println(time)
