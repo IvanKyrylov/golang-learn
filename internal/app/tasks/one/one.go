@@ -1,4 +1,4 @@
-package taskone
+package one
 
 import (
 	"fmt"
