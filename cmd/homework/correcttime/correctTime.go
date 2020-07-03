@@ -1,4 +1,4 @@
-package correctTime
+package correcttime
 
 import (
 	"fmt"
