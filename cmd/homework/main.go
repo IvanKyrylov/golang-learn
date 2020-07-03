@@ -1,6 +1,6 @@
 package main
 
-import "github.com/IvanKyrylov/goland_learn/cmd/homework/taskone"
+import "github.com/IvanKyrylov/goland_learn/internal/app/homework/taskone"
 
 func main() {
 	taskone.CorrectTime()
