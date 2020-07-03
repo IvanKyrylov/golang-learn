@@ -1,4 +1,4 @@
-package one
+package taskone
 
 import (
 	"testing"
