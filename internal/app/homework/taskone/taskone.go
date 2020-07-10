@@ -16,6 +16,8 @@ func CorrectTime() time.Time {
 		log.Fatalf("Error: %s", err)
 		return time
 	}
-	fmt.Printf("Time: %v", time)
+
+	fmt.Printf("Time: %v\n", time)
+
 	return time
 }
