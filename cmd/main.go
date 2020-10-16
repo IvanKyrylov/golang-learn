@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	taskone.CorrectTime()
+	taskone.HelloNow()
 
 	t, err := tasktwo.UnpackingString("4c")
 
