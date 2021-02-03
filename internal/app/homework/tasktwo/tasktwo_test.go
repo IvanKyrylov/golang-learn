@@ -1,38 +1,44 @@
 package tasktwo
 
-import "testing"
+import (
+	"errors"
+	"testing"
 
-type testcase struct {
-	name string
-	s    string
-	want string
-}
+	"github.com/stretchr/testify/require"
+)
 
 func TestUnpackingString(t *testing.T) {
-	tests := [...]testcase{
-		{
-			name: "one",
-			s:    "a4bc2d5e",
-			want: "aaaabccddddde",
-		},
-		{
-			name: "two",
-			s:    "abcd",
-			want: "abcd",
-		},
-		{
-			name: "three",
-			s:    "45",
-			want: "",
-		},
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{input: "a4bc2d5e", expected: "aaaabccddddde"},
+		{input: "abccd", expected: "abccd"},
+		{input: "", expected: ""},
+		{input: "aaa0b", expected: "aab"},
+		// uncomment if task with asterisk completed
+		// {input: `qwe\4\5`, expected: `qwe45`},
+		// {input: `qwe\45`, expected: `qwe44444`},
+		// {input: `qwe\\5`, expected: `qwe\\\\\`},
+		// {input: `qwe\\\3`, expected: `qwe\3`},
 	}
 
 	for _, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
-			got, _ := UnpackingString(tc.s)
-			if got != tc.want {
-				t.Errorf("UnpackingString(%s) returns %s, want: %s", tc.s, got, tc.want)
-			}
+		tc := tc
+		t.Run(tc.input, func(t *testing.T) {
+			result, err := UnpackingString(tc.input)
+			require.NoError(t, err)
+			require.Equal(t, tc.expected, result)
+		})
+	}
+}
+func TestUnpackInvalidString(t *testing.T) {
+	invalidStrings := []string{"3abc", "45", "aaa10b"}
+	for _, tc := range invalidStrings {
+		tc := tc
+		t.Run(tc, func(t *testing.T) {
+			_, err := UnpackingString(tc)
+			require.Truef(t, errors.Is(err, ErrInvalidString), "actual error %q", err)
 		})
 	}
 }
