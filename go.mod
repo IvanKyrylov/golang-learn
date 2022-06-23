@@ -1,4 +1,4 @@
-module github.com/IvanKyrylov/goland-learn
+module github.com/IvanKyrylov/golang-learn
 
 go 1.14
 
